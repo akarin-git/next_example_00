@@ -1,9 +1,15 @@
 import styles from "../../styles/Input.module.scss";
 
-export default function Input() {
+function Input({value,type,placeholder,onChange}) {
     return (
         <input
             className={styles.input}
+            type={type || "text"}
+            value={value}
+            placeholder={placeholder}
+            onChange={(e) => onChange(e.target.value)}
         />
     );
 }
+
+export default Input;

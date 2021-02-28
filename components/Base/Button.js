@@ -1,14 +1,28 @@
 
 import styles from "../../styles/Button.module.scss";
+import Link from "next/link";
+import ClassNames from "classnames";
 
-export default function Button({children}) {
+function Button ({className,href,children}) {
     return (
-         
+         <>
+            {href ? (
+                <Link href={href}>
+                    <a
+                        className={ClassNames(className,styles.btn)}
+                    >
+                        {children}
+                    </a>
+                </Link>
+            ):(
                 <button
-                    className={styles.btn}
+                    className={ClassNames(className,styles.btn)}
                 >
                     {children}
                 </button>
-        
+            )}
+        </>
     );
 }
+
+export default Button;
