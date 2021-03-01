@@ -1,21 +1,26 @@
-import Input from './Base/Input';
 import Button from './Base/Button';
-import { useState } from "react";
+import Input from './Base/Input';
+import { useState } from 'react';
 
-const SignInForm = ({onSubmit}) => {
+const SignUpForm = ({ onSubmit }) => {
+    const [nickname,setNickname] = useState("");
     const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("")
+    const [password,setPassword] = useState("");
 
     const submit = (e) => {
-        alert('hi');
         e.preventDefault();
-        // console.log(email,password)
-        onSubmit({ email,password });
-        // console.log(onSubmit);
+         console.log(nickname,email,password)
+        // onSubmit({ nickname,email,password });
     };
 
     return (
         <form onSubmit={submit}>
+            <Input
+                value={nickname}
+                placeholder="名前"
+                type="text"
+                onChange={setNickname}
+            />
             <Input
                 value={email}
                 placeholder="メールアドレス"
@@ -29,10 +34,10 @@ const SignInForm = ({onSubmit}) => {
                 onChange={setPassword}
             />
             <Button className="mts">
-            ログイン
+                新規登録
             </Button>
         </form>
-    )
+    );
 }
 
-export default SignInForm;
+export default SignUpForm;

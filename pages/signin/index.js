@@ -2,13 +2,13 @@ import Head from "next/head";
 import Button from "../../components/Base/Button";
 import Layout from "../../components/Layout";
 import SignInForm from "../../components/SignInForm";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
-const SignUp = () => {
+export default function SignUp() {
 
-    const signIn = async ({ email,password }) => {
-        const 
-    }
+    const signIn = ({email,password}) => {
+        // console.log("SUBMIT" + email + password);
+    };
 
     return (
         <Layout>
@@ -17,13 +17,13 @@ const SignUp = () => {
             </Head>
             <div className="wrap">
                 <SignInForm
-                    onSubmit={signIn}
+                    // onSubmit={signIn}
+                    onSubmit={(value) => console.log(value)}
                 />
                 <Button href="/" className="mts">
                     戻る
                 </Button>
             </div>
-
             <style jsx>
                 {`
                 .wrap {
@@ -36,4 +36,3 @@ const SignUp = () => {
     )
 }
 
-export default SignUp;
