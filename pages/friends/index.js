@@ -3,21 +3,14 @@ import Link from "next/link";
 import Layout from '../../components/Layout';
 import styles from "../../styles/FriendsPage.module.scss";
 import FriendItem from "../../components/FriendItem";
-// import { useGeolocation } from "beautiful-react-hooks";
+// import { useGeolocation } from "beautiful-react-hooks"; 
 import { dayjs } from "../../plugins";
 
-const pin = async () => {
-    await pinAndMakeFriends({
-        latitude:geoState.position.coords.latitude,
-        longitude:geoState.position.coords.longitude,
-    });
-    refetchFriends();
-};
 
 export default function Friends() {
-    // const [geoState] = useGeolocation();
+// const [geoState] = useGeolocation();
    
-const Friends = [
+const friends = [
   {
     id: 'dummy1-id',
     nickname: 'dummy1-nickname',
@@ -29,7 +22,7 @@ const Friends = [
     },
   },
   {
-    id: 'dummy1-id',
+    id: 'dummy2-id',
     nickname: 'dummy2-nickname',
     face_image_url: '',
     pin: {
@@ -39,6 +32,11 @@ const Friends = [
     },
   },
 ]
+
+
+const pin =  () => {
+    console.log(pin);
+};
 
     return (
         <Layout>
@@ -60,15 +58,14 @@ const Friends = [
           {/* )} */}
         <div className={styles.friends}>
             <h2 className={styles.headline}>友だち</h2>
-            {Friends.map((friend,i) => (
+            {friends.map((friend,i) => (
             <FriendItem
                 key={friend.id}
                 href={"/friends/" + friend.id}
                 nickname={friend.nickname}
                 date={
                     friend.pin
-                    ? dayjs(friend.pin.datetime).format("YYYY/MM/DD HH:mm")
-                    : ""
+                    ? dayjs(friend.pin.datetime).format("YYYY/MM/DD HH:mm"):""
                 }
                 img={friend.face_image_url || ""}
                 // iconPlaceholder={getPlaceholder(i)}
@@ -92,7 +89,6 @@ const Friends = [
              >
              </button>
         </div>
-
         </Layout>
     )
 }
