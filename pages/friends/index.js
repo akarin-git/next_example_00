@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from '../../components/Layout';
 import styles from "../../styles/FriendsPage.module.scss";
 import FriendItem from "../../components/FriendItem";
+import { useAppContext, useAppAxios, useAppAxiosExecute } from "../../hooks";
 // import { useGeolocation } from "beautiful-react-hooks"; 
 import { dayjs } from "../../plugins";
 
@@ -33,6 +34,18 @@ const friends = [
   },
 ]
 
+  // const {
+  //   state:{ user },
+  // } = useAppContext();
+  // console.log(user)
+
+  //  const [{ data: friends, loading, error }, refetchFriends] = useAppAxios({
+  //   url: "/api/friends",
+  // });
+  // const [{ loading: pinning }, pinAndMakeFriends] = useAppAxiosExecute({
+  //   method: "POST",
+  //   url: "/api/my/pin",
+  // });
 
 const pin =  () => {
     console.log(pin);

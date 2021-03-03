@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import styles from "../styles/PersonDetail.module.scss";
 import Loader from "./Loader";
 import Button from "./Base/Button";
+import PersonImage from "./PersonImage";
 
 const PersonMap = dynamic(import("./PersonMap"),{
     ssr:false,
@@ -11,12 +12,14 @@ const PersonMap = dynamic(import("./PersonMap"),{
 
 function PersonDetail({
     nickname,
+    faceImageUrl,
     latitude,
     longitude,
     datetime,
 }) {
     return (
         <div className={styles.person}>
+            <PersonImage src={faceImageUrl} />
             <h2 className={styles.nickname}>{nickname}</h2>
             <div className={styles.mapWrap}>
                 <PersonMap latitude={latitude} longitude={longitude}/>

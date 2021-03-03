@@ -2,15 +2,15 @@ import Button from './Base/Button';
 import Input from './Base/Input';
 import { useState } from 'react';
 
-const SignUpForm = ({ onSubmit }) => {
+const SignUpForm = ({ isSending,onSubmit }) => {
     const [nickname,setNickname] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
     const submit = (e) => {
         e.preventDefault();
-         console.log(nickname,email,password)
-        // onSubmit({ nickname,email,password });
+        //  console.log(nickname,email,password)
+        onSubmit({ nickname,email,password });
     };
 
     return (
@@ -33,7 +33,7 @@ const SignUpForm = ({ onSubmit }) => {
                 type="password"
                 onChange={setPassword}
             />
-            <Button className="mts">
+            <Button className="mts" disabled={isSending}>
                 新規登録
             </Button>
         </form>
