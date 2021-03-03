@@ -11,17 +11,17 @@ import PersonDetail from "../../components/PersonDetail";
 
 export default function Me() {
 
-//  const user = 
-//   {
-//     id: 'user1-id',
-//     nickname: 'user1-nickname',
-//     face_image_url: '',
-//     pin: {
-//       datetime: new Date(),
-//       latitude: 51.505,
-//       longitude: -0.09,
-//     },
-//   }
+ const user = 
+  {
+    id: 'user1-id',
+    nickname: 'user1-nickname',
+    face_image_url: '',
+    pin: {
+      datetime: new Date(),
+      latitude: 51.505,
+      longitude: -0.09,
+    },
+  }
 
   // const {
   //   state:{ user },
