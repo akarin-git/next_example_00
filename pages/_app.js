@@ -31,10 +31,10 @@ function MyApp({ Component, pageProps }) {
   }, [dispatch,setUser,user]);
   return (
    <Context.Provider
-      value={console.log({
+      value={{
         state,
         dispatch,
-      })}
+      }}
     >
       <Component {...pageProps} />
      </Context.Provider>
