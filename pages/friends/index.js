@@ -1,3 +1,4 @@
+import classnames from "classnames";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from '../../components/Layout';
@@ -5,12 +6,20 @@ import Loader from "../../components/Loader";
 import styles from "../../styles/FriendsPage.module.scss";
 import FriendItem from "../../components/FriendItem";
 import { useAppContext, useAppAxios, useAppAxiosExecute } from "../../hooks";
-// import { useGeolocation } from "beautiful-react-hooks"; 
+import { useGeolocation } from "beautiful-react-hooks"; 
 import { dayjs } from "../../plugins";
+
+const getPlaceholder = (i) =>
+  i % 3 === 0
+    ? "linear-gradient(141.16deg, #F686AB 11.81%, #FFE177 82.38%)"
+    : i % 3 === 1
+    ? "linear-gradient(141.16deg, #B7F4EF 11.81%, #E27EA0 85.05%)"
+    : "linear-gradient(141.16deg, #FFE073 11.81%, #AFFDF6 85.05%)";
 
 
 export default function Friends() {
   if (!process.browser) return null;
+  // console.log(process.browser)
 // const [geoState] = useGeolocation();
    
 // const friends = [
@@ -36,6 +45,8 @@ export default function Friends() {
   // },
 // ]
 
+const [geoState] = useGeolocation();
+
 const {
   state:{user},
 } = useAppContext();
@@ -45,18 +56,21 @@ const {
    const [{ data: friends, loading, error }, refetchFriends] = useAppAxios({
     url: "/api/friends",
   });
-  console.log(friends);
+  // console.log(friends);
 
   const [{ loading: pinning }, pinAndMakeFriends] = useAppAxiosExecute({
     method: "POST",
     url: "/api/my/pin",
   });
-  // console.log(pinning)
-
-const pin =  () => {
-    console.log(pin);
-};
-
+  
+  const pin = async () => {
+    await pinAndMakeFriends({
+      latitude: geoState.position.coords.latitude,
+      longitude: geoState.position.coords.longitude,
+    });
+    refetchFriends();
+  };
+  // console.log(pin)
 
     return (
         <Layout>
@@ -90,7 +104,7 @@ const pin =  () => {
                 ? dayjs(friend.pin.datetime).format("YYYY/MM/DD HH:mm"):""
               }
               img={friend.face_image_url || ""}
-              // iconPlaceholder={getPlaceholder(i)}
+              iconPlaceholder={getPlaceholder(i)}
               />
               ))}
         </div>
@@ -108,11 +122,12 @@ const pin =  () => {
             </div>
                )}
             <button
-             className={styles.pin}
+             className={classnames(styles.pin, { [styles.isPinning]: pinning })}
+             disabled={pinning || !geoState.isSupported || !geoState.position}
              onClick={pin}
              >
              </button>
         </div>
         </Layout>
-    )
+    );
 }
