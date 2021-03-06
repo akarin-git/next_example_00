@@ -96,7 +96,6 @@ const pin =  () => {
         </div>
       )}
       {!loading && !friends.length && (
-
         <div className={styles.noFriends}>
             <img
                src="https://res.cloudinary.com/kiyopikko/image/upload/v1562219254/hanly-gray_2x_pdy6qo.png"

@@ -37,6 +37,8 @@ export default function Me() {
             <Head>
                 <title>プロフィール</title>
             </Head>
+            {!user && <Loader />}
+      {!!user && (
             <PersonDetail
                 nickname={user.nickname}
                 latitude={user.pin ? user.pin.latitude : 0}
@@ -46,6 +48,7 @@ export default function Me() {
           }
                 faceImageUrl={user.face_image_url}
           />
+          )}
             <Button isTxt>
                 ログアウト
             </Button>
