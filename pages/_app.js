@@ -11,15 +11,15 @@ function MyApp({ Component, pageProps }) {
   const [{ data: user }, fetchUser] = useAppAxiosExecute({
     url: "/api/me",
   });
-
+  
   useEffect(() => {
     if (process.browser && needAuth) {
-      console.log(needAuth)
+      // console.log(process.browser)
       if (!window.localStorage.getItem("hanly_access_token")) {
         router.replace("/signin");
       } else {
         fetchUser();
-        console.log(fetchUser())
+        // console.log(user)
       }
     }
   }, [router]);

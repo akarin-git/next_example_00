@@ -36,41 +36,42 @@ export const useAppAxiosExecute = ({
     const [loading,setLoading] = useState(false);
 
     function execute(payload) {
-        return new Promise(async (resolve,_reject) => {
-            setLoading(true);
-            try {
-                const headers = {
-                    Authorization:
-                    "Bearer" + 
-                    (process.broeser
-                    ? window.localStorage.getItem("hanly_access_token")
-                    : ""),
-                };
-                let result;
-                if(contentType === "multipart/form-data"){
-                    result = await axios.post(url,payload,{
-                        headers,
-                    });
-                } else {
-                    result = await axios({
-                        method,
-                        url,
-                        data:payload,
-                        headers,
-                    });
-                }
-                setData(result.data);
-                resolve(result.data);
-            } catch(e) {
-                setTimeout(() => {
-                    setError("");
-                }, 3000);
-            } finally {
-                setLoading(false);
+        return new Promise(async (resolve, _reject) => {
+          setLoading(true);
+          try {
+            const headers = {
+              Authorization:
+                "Bearer " +
+                (process.browser
+                  ? window.localStorage.getItem("hanly_access_token")
+                  : ""),
+            };
+            let result;
+            if (contentType === "multipart/form-data") {
+              result = await axios.post(url, payload, {
+                headers,
+              });
+            } else {
+              result = await axios({
+                method,
+                url,
+                data: payload,
+                headers,
+              });
             }
+            setData(result.data);
+            resolve(result.data);
+          } catch (e) {
+            setError(errorMessage);
+            setTimeout(() => {
+              setError("");
+            }, 3000);
+          } finally {
+            setLoading(false);
+          }
         });
-    }
-
+      }
+    
     return [
         {
             data,
@@ -87,9 +88,9 @@ export const useAppRouter = () => {
         router,
         {
             needAuth:
-                router.toute !== "/" &&
-                router.toute !== "/signup" &&
-                router.toute !== "/signin",
+                router.route !== "/" &&
+                router.route !== "/signup" &&
+                router.route !== "/signin",
         },
     ];
 };
