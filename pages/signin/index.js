@@ -42,12 +42,14 @@ export default function SignUp() {
       grant_type: "password",
       client_id,
       client_secret,
+    //   client_id:process.env.API_CLIENT_ID,
+    //   client_secret:process.env.API_CLIENT_SECRET,
       scope: "*",
       username: email,
       password,
     });
         // console.log(client_id, client_secret);
-    };
+    }
 
     return (
         <Layout>
@@ -58,6 +60,7 @@ export default function SignUp() {
                 <SignInForm
                     onSubmit={signIn}
                     isSending={fetchingCredentials || signingIn}
+                    // isSending={signingIn}
                     // onSubmit={(value) => console.log(value)}
                 />
                 <Button href="/" className="mts" isTxt>

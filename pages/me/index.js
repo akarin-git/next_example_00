@@ -31,6 +31,10 @@ export default function Me() {
 
   const [router] = useAppRouter();
 
+  const logout = (e) =>{
+    console.log(logout);
+  }
+
 
     return (
         <Layout>
@@ -49,7 +53,7 @@ export default function Me() {
                 faceImageUrl={user.face_image_url}
           />
           )}
-            <Button isTxt>
+            <Button isTxt onClick={logout}>
                 ログアウト
             </Button>
         </Layout>

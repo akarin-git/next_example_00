@@ -31,7 +31,7 @@ function PersonDetail({
             }
             </p>
             <div className={styles.buttonWrap}>
-                <Button href="/friends">戻る</Button>
+                <Button href="/friends" isTxt>戻る</Button>
             </div>
         </div>
     );

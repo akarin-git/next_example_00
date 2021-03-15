@@ -36,6 +36,7 @@ export const useAppAxiosExecute = ({
     const [loading,setLoading] = useState(false);
 
     function execute(payload) {
+      console.log(payload);
         return new Promise(async (resolve, _reject) => {
           setLoading(true);
           try {

@@ -3,7 +3,7 @@ import styles from "../../styles/Button.module.scss";
 import Link from "next/link";
 import ClassNames from "classnames";
 
-function Button ({className,href,children}) {
+function Button ({className, href, disabled, isTxt, children, onClick}) {
     return (
          <>
             {href ? (
@@ -16,7 +16,11 @@ function Button ({className,href,children}) {
                 </Link>
             ):(
                 <button
-                    className={ClassNames(className,styles.btn)}
+                    className={ClassNames(className,styles.btn,{
+                        [styles.isTxt]:isTxt,
+                    })}
+                    disabled={disabled}
+                    onClick={onClick}
                 >
                     {children}
                 </button>
