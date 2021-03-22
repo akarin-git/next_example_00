@@ -56,7 +56,8 @@ export default function Me() {
             <Button isTxt onClick={logout}>
                 ログアウト
             </Button>
-        </Layout>
+         </Layout>
+        
     );
 }
 

@@ -12,6 +12,7 @@ export default function Home() {
       <div>
         <div className={styles.imgWrap}>
           <img
+            // src="https://res.cloudinary.com/dk2uwbtnl/image/upload/c_fit,h_200,w_200/ppr2bzejnquiklqkdgig.png"
             src="https://res.cloudinary.com/kiyopikko/image/upload/v1561802660/hanly-splash_ushtah.png"
             alt="Hanly"
             width="178"
